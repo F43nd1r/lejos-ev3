@@ -41,11 +41,11 @@ import lejos.utility.EndianTools;
  * 
  * <p>
  * 
- * See <a href="http://www.mindsensors.com/index.php?module=documents&JAS_DocumentManager_op=downloadFile&JAS_File_id=1046"> Sensor datasheet </a>
- * See <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=150"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://www.mindsensors.com/index.php?module=documents&JAS_DocumentManager_op=downloadFile&JAS_File_id=1046"> Sensor datasheet </a>
+ * @see <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=150"> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -101,7 +101,7 @@ private class PressureMode implements SensorMode {
 	@Override
 	public void fetchSample(float[] sample, int offset) {
 		getData(0x53, buf, 0, 4);		
-		sample[offset] = EndianTools.decodeIntLE(buf, 0);
+		sample[offset] = (float) EndianTools.decodeIntLE(buf, 0);
 	}
 
 	@Override

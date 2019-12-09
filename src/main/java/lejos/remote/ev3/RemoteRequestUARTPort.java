@@ -101,17 +101,6 @@ public class RemoteRequestUARTPort extends RemoteRequestIOPort implements UARTPo
 		return sendRequest(req, true).result;
 	}
 	
-    @Override
-    public int write(byte[] buffer, int offset, int len)
-    {
-        EV3Request req = new EV3Request();
-        req.request = EV3Request.Request.UART_WRITE;
-        req.intValue2 = offset;
-        req.intValue3 = len;
-        req.byteData = buffer;
-        return sendRequest(req,true).reply;
-    }
-	
 	private EV3Reply sendRequest(EV3Request req, boolean replyRequired) {
 		EV3Reply reply = null;
 		req.replyRequired = replyRequired;
@@ -144,7 +133,7 @@ public class RemoteRequestUARTPort extends RemoteRequestIOPort implements UARTPo
     public int rawWrite(byte[] buffer, int offset, int len)
     {
         EV3Request req = new EV3Request();
-        req.request = EV3Request.Request.UART_RAW_WRITE;
+        req.request = EV3Request.Request.UART_RAW_READ;
         req.intValue2 = offset;
         req.intValue3 = len;
         req.byteData = buffer;
@@ -159,5 +148,4 @@ public class RemoteRequestUARTPort extends RemoteRequestIOPort implements UARTPo
         req.intValue2 = bitRate;
         sendRequest(req, false);
     }
-
 }

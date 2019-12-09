@@ -55,15 +55,13 @@ import java.util.ArrayList;
  * pilot.stop();
  * </pre></code>
  * </p>
- * <p>
+ * 
  * Note: A DifferentialPilot robot can simulate a SteeringPilot robot by calling
  * DifferentialPilot.setMinRadius() and setting the value to something greater
  * than zero (perhaps 15 cm).
- * </p>
- * @deprecated use {@link MovePilot} instead. 
+ * 
  **/
-@Deprecated 
-public class DifferentialPilot implements  LineFollowingMoveController {
+public class DifferentialPilot implements ArcRotateMoveController {
 	/**
 	 * Allocates a DifferentialPilot object, and sets the physical parameters of
 	 * the NXT robot.<br>
@@ -159,9 +157,9 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 		// both
 		_trackWidth = (float) trackWidth;
 		_parity = (byte) (reverse ? -1 : 1);
-		setLinearSpeed(.8f * getMaxLinearSpeed());
-		setAngularSpeed(.8f * getMaxRotateSpeed());
-		setLinearAcceleration((int) (_robotTravelSpeed * 4));
+		setTravelSpeed(.8f * getMaxTravelSpeed());
+		setRotateSpeed(.8f * getMaxRotateSpeed());
+		setAcceleration((int) (_robotTravelSpeed * 4));
 		_monitor = new Monitor();
 		_monitor.start();
 		_left.synchronizeWith(new RegulatedMotor[]{_right});
@@ -203,7 +201,7 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 	 * @param travelSpeed
 	 *            : speed in distance (wheel diameter)units/sec
 	 */
-	public void setLinearSpeed(final double travelSpeed) {
+	public void setTravelSpeed(final double travelSpeed) {
 		if (!isMoving()) {
 			_robotTravelSpeed = (float) travelSpeed;
 			setSpeed((int) Math.round(travelSpeed * _leftDegPerDistance),
@@ -218,19 +216,20 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 		}
 	}
 
-	public double getLinearSpeed() {
+	public double getTravelSpeed() {
 		return _robotTravelSpeed;
 	}
 
-	@Override
-	public void setLinearAcceleration(double acceleration) {
-		_acceleration = (int)acceleration;
+	/**
+	 * Sets the normal acceleration of the robot in distance/second/second where
+	 * distance is in the units of wheel diameter. The default value is 4 times
+	 * the maximum travel speed.
+	 * 
+	 * @param acceleration
+	 */
+	public void setAcceleration(int acceleration) {
+		_acceleration = acceleration;
 		setMotorAccel(_acceleration);
-	}
-	
-  @Override
-	public double getLinearAcceleration() {
-	  return _acceleration;
 	}
 
 	/**
@@ -245,7 +244,7 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 		_left.endSynchronization();
 	}
 
-	public double getMaxLinearSpeed() {
+	public double getMaxTravelSpeed() {
 		return Math.min(_left.getMaxSpeed(), _right.getMaxSpeed())
 				/ Math.max(_leftDegPerDistance, _rightDegPerDistance);
 		// max degree/second divided by degree/unit = unit/second
@@ -256,13 +255,13 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 	 * 
 	 * @param rotateSpeed
 	 */
-	public void setAngularSpeed(double rotateSpeed) {
+	public void setRotateSpeed(double rotateSpeed) {
 		_robotRotateSpeed = (float) rotateSpeed;
 		setSpeed((int) Math.round(rotateSpeed * _leftTurnRatio),
 				(int) Math.round(rotateSpeed * _rightTurnRatio));
 	}
 
-	public double getAngularSpeed() {
+	public double getRotateSpeed() {
 		return _robotRotateSpeed;
 	}
 
@@ -272,7 +271,7 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 		// max degree/second divided by degree/unit = unit/second
 	}
 
-	public double getMaxAngularSpeed() {
+	public double getRotateMaxSpeed() {
 		return getMaxRotateSpeed();
 	}
 
@@ -1222,17 +1221,5 @@ public class DifferentialPilot implements  LineFollowingMoveController {
 	 */
 
 	private boolean _moveActive;
-  @Override
-  public void setAngularAcceleration(double acceleration) {
-    // TODO Pilot does not take angular acceleration into account. 
-    // The method serves as a placeholder to satisfy the interface.
-    
-  }
-
-  @Override
-  public double getAngularAcceleration() {
-    // TODO see setAngularAcceleration
-    return 0;
-  }
 
 }

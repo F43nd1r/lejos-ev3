@@ -129,24 +129,24 @@ public class RemoteRequestPilot implements ArcRotateMoveController {
 	}
 
 	@Override
-	public void setLinearSpeed(double speed) {
+	public void setTravelSpeed(double speed) {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_SET_LINEAR_SPEED;
+		req.request = EV3Request.Request.PILOT_SET_TRAVEL_SPEED;
 		req.doubleValue = speed;
 		sendRequest(req, false);
 	}
 
 	@Override
-	public double getLinearSpeed() {
+	public double getTravelSpeed() {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_GET_LINEAR_SPEED;
+		req.request = EV3Request.Request.PILOT_GET_TRAVEL_SPEED;
 		return sendRequest(req, true).doubleReply;
 	}
 
 	@Override
-	public double getMaxLinearSpeed() {
+	public double getMaxTravelSpeed() {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_GET_MAX_LINEAR_SPEED;
+		req.request = EV3Request.Request.PILOT_GET_MAX_TRAVEL_SPEED;
 		return sendRequest(req, true).doubleReply;
 	}
 
@@ -180,24 +180,24 @@ public class RemoteRequestPilot implements ArcRotateMoveController {
 	}
 
 	@Override
-	public void setAngularSpeed(double speed) {
+	public void setRotateSpeed(double speed) {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_SET_ANGULAR_SPEED;
+		req.request = EV3Request.Request.PILOT_SET_ROTATE_SPEED;
 		req.doubleValue = speed;
 		sendRequest(req, false);
 	}
 
 	@Override
-	public double getAngularSpeed() {
+	public double getRotateSpeed() {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_GET_ANGULAR_SPEED;
+		req.request = EV3Request.Request.PILOT_GET_ROTATE_SPEED;
 		return sendRequest(req, true).doubleReply;
 	}
 
 	@Override
-	public double getMaxAngularSpeed() {
+	public double getRotateMaxSpeed() {
 		EV3Request req = new EV3Request();
-		req.request = EV3Request.Request.PILOT_GET_MAX_ANGULAR_SPEED;
+		req.request = EV3Request.Request.PILOT_GET_MAX_ROTATE_SPEED;
 		return sendRequest(req, true).doubleReply;
 	}
 	
@@ -246,45 +246,5 @@ public class RemoteRequestPilot implements ArcRotateMoveController {
 		rotate(angle,false);
 		
 	}
-
-  @Override
-  public void setLinearAcceleration(double acceleration) {
-    EV3Request req = new EV3Request();
-    req.request = EV3Request.Request.PILOT_SET_LINEAR_ACCELERATION;
-    req.doubleValue = acceleration;
-    sendRequest(req, false);
-  }
-
-  @Override
-  public double getLinearAcceleration() {
-    EV3Request req = new EV3Request();
-    req.request = EV3Request.Request.PILOT_GET_LINEAR_ACCELERATION;
-    return sendRequest(req, true).doubleReply;
-  }
-
-  @Override
-  public void rotateRight() {
-    rotate(Double.NEGATIVE_INFINITY, true);
-  }
-
-  @Override
-  public void rotateLeft() {
-    rotate(Double.POSITIVE_INFINITY, true);
-  }
-
-  @Override
-  public void setAngularAcceleration(double acceleration) {
-    EV3Request req = new EV3Request();
-    req.request = EV3Request.Request.PILOT_SET_ANGULAR_ACCELERATION;
-    req.doubleValue = acceleration;
-    sendRequest(req, false);
-  }
-
-  @Override
-  public double getAngularAcceleration() {
-    EV3Request req = new EV3Request();
-    req.request = EV3Request.Request.PILOT_GET_ANGULAR_ACCELERATION;
-    return sendRequest(req, true).doubleReply;
-  }
 
 }

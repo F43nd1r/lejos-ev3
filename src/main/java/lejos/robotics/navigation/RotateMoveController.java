@@ -20,35 +20,17 @@ public interface RotateMoveController extends MoveController {
    * methods)
    * @param speed in degrees per second
    */
-  public void setAngularSpeed(double speed);
+  public void setRotateSpeed(double speed);
   
   /**
    * Returns the value of the rotation speed
    * @return the rotate speed in degrees per second
    */
-  public double getAngularSpeed();
+  public double getRotateSpeed();
 
   /**
    * returns the maximum value of the rotation speed;
    * @return max rotation speed
    */
-  public double getMaxAngularSpeed();
-  
-  /**
-   * Sets the acceleration at which the robot will accelerate at the start of a move and decelerate at the end of a move.
-   * Acceleration is measured in units/second^2. e.g. If wheel diameter is cm, then acceleration is cm/sec^2. <p>
-   * If acceleration is set during a move it will not be in used for the current move, it will be in effect with the next move.
-   * @param acceleration in chosen units/second^2
-   */
-  public void setAngularAcceleration(double acceleration);
-  
-  /** Returns the acceleration at which the robot accelerates at the start of a move and decelerates at the end of a move.
-   * @return acceleration in chosen units/second^2
-   */
-  public double getAngularAcceleration();
-  
-public void rotateRight();
-  
-public void rotateLeft();
-
+  public double getRotateMaxSpeed();
 }

@@ -63,33 +63,20 @@ public interface MoveController extends MoveProvider {
 	 * is slightly less). Speed is measured in units/second. e.g. If wheel diameter is cm, then speed is cm/sec.
 	 * @param speed In chosen units per second (e.g. cm/sec)
 	 */
-	public void setLinearSpeed(double speed);
+	public void setTravelSpeed(double speed);
 
 	/**
 	 * Returns the speed at which the robot will travel forward and backward (and to some extent arcs, although actual arc speed
 	 * is slightly less). Speed is measured in units/second. e.g. If wheel diameter is cm, then speed is cm/sec.
 	 * @return Speed in chosen units per second (e.g. cm/sec)
 	 */
-	public double getLinearSpeed();
+	public double getTravelSpeed();
 
 	/**
 	 * Returns the maximum speed at which this robot is capable of traveling forward and backward.
 	 * Speed is measured in units/second. e.g. If wheel diameter is cm, then speed is cm/sec.
 	 * @return Speed in chosen units per second (e.g. cm/sec)
 	 */
-	public double getMaxLinearSpeed();
-	
-	/**
-   * Sets the acceleration at which the robot will accelerate at the start of a move and decelerate at the end of a move.
-   * Acceleration is measured in units/second^2. e.g. If wheel diameter is cm, then acceleration is cm/sec^2. <p>
-   * If acceleration is set during a move it will not be in used for the current move, it will be in effect with the next move.
-	 * @param acceleration in chosen units/second^2
-	 */
-	public void setLinearAcceleration(double acceleration);
-	
-	/** Returns the acceleration at which the robot accelerates at the start of a move and decelerates at the end of a move.
-	 * @return acceleration in chosen units/second^2
-	 */
-	public double getLinearAcceleration();
+	public double getMaxTravelSpeed();
 
 }

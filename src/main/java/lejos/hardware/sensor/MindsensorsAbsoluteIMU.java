@@ -78,12 +78,12 @@ import lejos.robotics.Calibrate;
  * 
  * <p>
  * 
- * See <a href=
+ * @see <a href=
  *      "http://mindsensors.com/index.php?module=documents&JAS_DocumentManager_op=downloadFile&JAS_File_id=1369"
  *      >Mindsensors IMU user guide"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>

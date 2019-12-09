@@ -45,10 +45,10 @@ import lejos.robotics.SampleProvider;
  * 
  * <p>
  * 
- * See <a href="http://www.ev-3.net/en/archives/844"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://www.ev-3.net/en/archives/844"> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>

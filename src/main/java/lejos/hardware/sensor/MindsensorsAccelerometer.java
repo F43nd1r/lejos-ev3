@@ -38,10 +38,10 @@ import lejos.utility.EndianTools;
  * 
  * <p>
  * 
- * See <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=101"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=101"> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -68,7 +68,6 @@ public class MindsensorsAccelerometer extends I2CSensor  {
 	 */
 	public MindsensorsAccelerometer(I2CPort port, int address) {
 		super(port, address);
-		init();
 	}
 	
 	/**
@@ -78,7 +77,6 @@ public class MindsensorsAccelerometer extends I2CSensor  {
 	 */
 	public MindsensorsAccelerometer(I2CPort port) {
 		super(port);
-		init();
 	}
 	
 	/**

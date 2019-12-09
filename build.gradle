@@ -1,5 +1,8 @@
-apply plugin: 'java'
-apply from: "$rootProject.projectDir/gradle/scripts/publish.gradle"
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id("com.jfrog.bintray") version "1.8.4"
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -11,4 +14,66 @@ repositories {
 dependencies {
     compile 'com.github.bdeneuter:dbus-java:2.7'
     compile 'net.java.dev.jna:jna:3.2.7'
+}
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadoc {
+    failOnError false
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'lejos-ev3'
+                description = 'lejos ev3 api'
+                url = 'https://github.com/F43nd1r/lejos-ev3'
+
+                scm {
+                    connection = 'scm:git:https://github.com/F43nd1r/lejos-ev3.git'
+                    developerConnection = 'scm:git:git@github.com:F43nd1r/lejos-ev3.git'
+                    url = 'https://github.com/F43nd1r/lejos-ev3.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'GNU GENERAL PUBLIC LICENSE Version 3'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'f43nd1r'
+                        name = 'Lukas Morawietz'
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = artifactoryUser
+    key = artifactoryApiKey
+    publications = ['maven']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'lejos-ev3'
+        websiteUrl = 'https://github.com/F43nd1r/lejos-ev3'
+        vcsUrl = 'https://github.com/F43nd1r/lejos-ev3.git'
+        licenses = ['GNU GENERAL PUBLIC LICENSE Version 3']
+        version {
+            name = project.version
+            desc = 'lejos ev3 api'
+        }
+    }
 }

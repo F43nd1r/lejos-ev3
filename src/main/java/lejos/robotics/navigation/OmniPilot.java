@@ -37,10 +37,8 @@ import lejos.utility.Matrix;
  * The odometry is computed by this class directly. 
  * For the class to work properly, take care to design the robot symmetrically, so that the three wheel axes meet in the center of the robot.</p>
  * @author Daniele Benedettelli
- *  @deprecated use {@link MovePilot} instead. 
  * 
  */
-@Deprecated
 public class OmniPilot implements ArcRotateMoveController, RegulatedMotorListener {
     
     private Pose pose = new Pose(); // TODO: Technically this variable should be removed. Navigator handles Pose.
@@ -77,7 +75,6 @@ public class OmniPilot implements ArcRotateMoveController, RegulatedMotorListene
 	 * MoveListeners to notify when a move is started or stopped.
 	 */
 	private ArrayList<MoveListener> listeners= new ArrayList<MoveListener>();
-  private int acceleration;
 	
 	/**
 	 * Instantiates a new omnidirectional pilot.
@@ -249,21 +246,16 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 		motor3.setSpeed(motor3Speed);
 	}
 	
-	@Override
-	public void setLinearAcceleration(double accel) {
-	  // TODO: take relative wheel speeds into account
-	  this.acceleration = (int) accel;
-		this.motor1.setAcceleration(acceleration);
-		this.motor2.setAcceleration(acceleration);
-		this.motor3.setAcceleration(acceleration);
+	/**
+	 * Sets the acceleration.
+	 *
+	 * @param accel the new acceleration
+	 */
+	public void setAcceleration(int accel) {
+		this.motor1.setAcceleration(accel);
+		this.motor2.setAcceleration(accel);
+		this.motor3.setAcceleration(accel);
 	}
-
-  @Override
-  public double getLinearAcceleration() {
-    return acceleration;
-  }
-
-	
 	
 	/**
 	 * Start motors.
@@ -344,12 +336,12 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 		return motor1.isMoving() || motor2.isMoving() || motor3.isMoving();
 	}
 
-	public void setLinearSpeed(double speed) {
+	public void setTravelSpeed(double speed) {
 		linearSpeed = Math.abs((float)speed);
 		reverse = speed<0;
 	}
 
-	public double getLinearSpeed() {
+	public double getTravelSpeed() {
 		return linearSpeed;
 	}
 	
@@ -371,7 +363,7 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 		return speedVectorDirection;
 	}
 
-	public double getMaxLinearSpeed() {
+	public double getMaxTravelSpeed() {
 		// it is generally assumed, that the maximum accurate speed of Motor is
 		// 100 degree/second * Voltage
 		double maxRadSec = Math.toRadians(battery.getVoltage()*100f);
@@ -383,15 +375,15 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 		// max degree/second divided by degree/unit = unit/second
 	}
 
-	public void setAngularSpeed(double speed) {
+	public void setRotateSpeed(double speed) {
 		angularSpeed = (float)speed;
 	}
 	
-	public double getAngularSpeed() {
+	public double getRotateSpeed() {
 		return angularSpeed;
 	}
 
-	public double getMaxAngularSpeed() {
+	public double getRotateMaxSpeed() {
 		// it is generally assumed, that the maximum accurate speed of Motor is
 		// 100 degree/second * Voltage
 		double maxRadSec = Math.toRadians(battery.getVoltage()*100f);
@@ -539,7 +531,7 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 	 * @param turnRate the turn rate
 	 */
 	public void steer(float turnRate) {
-		float angSpeed = (float)(turnRate*getMaxAngularSpeed()/200);
+		float angSpeed = (float)(turnRate*getRotateMaxSpeed()/200);
 		float dir = reverse? speedVectorDirection : speedVectorDirection+180;
 		spinningMode = false;
 		setSpeed(linearSpeed, dir, angSpeed);
@@ -567,7 +559,7 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 	 * @param immediateReturn the immediate return
 	 */
 	public void steer(float turnRate, float angle, boolean immediateReturn) {
-		angularSpeed = (float)(turnRate*getMaxAngularSpeed()/200);
+		angularSpeed = (float)(turnRate*getRotateMaxSpeed()/200);
 //		LCD.drawString("spd "+angularSpeed+" deg/s ", 0, 0);	
 		float radius = (float) (linearSpeed/Math.toRadians(angularSpeed));
 		arc(radius,angle,immediateReturn);
@@ -681,7 +673,7 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 	 */
 	@Deprecated
 	public void setSpeed(int speed) {
-		setLinearSpeed(speed);
+		setTravelSpeed(speed);
 	}
 
 	private class Odometer extends Thread {
@@ -815,28 +807,4 @@ private void initMatrices(boolean centralWheelForward, boolean motorReverse) {
 			previousAngle = newAngle;
 		}
 	}
-
-  @Override
-  public void rotateRight() {
-    rotate(Double.NEGATIVE_INFINITY, true);
-      }
-
-  @Override
-  public void rotateLeft() {
-    rotate(Double.POSITIVE_INFINITY, true);
-  }
-
-  @Override
-  public void setAngularAcceleration(double acceleration) {
-    // TODO Pilot does not take angular acceleration into account. 
-    // The method serves as a placeholder to satisfy the interface.
-
-    
-  }
-
-  @Override
-  public double getAngularAcceleration() {
-    // TODO see setAngularAcceleration
-    return 0;
-  }
 }

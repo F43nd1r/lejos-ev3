@@ -202,7 +202,7 @@ public void setHeading(float heading )
 @Override
 public String toString()
 {
-  return String.format(format, _location.x, _location.y, _heading);
+  return("X:"+_location.x+" Y:"+_location.y+" H:"+_heading);
 }
 
 public void dumpObject(DataOutputStream dos) throws IOException {
@@ -219,7 +219,6 @@ public void loadObject(DataInputStream dis) throws IOException {
 
 protected  Point _location;
 protected  float _heading;
-protected static String format ="X:%.0f Y:%.0f H:%.0f";
 
 }
 

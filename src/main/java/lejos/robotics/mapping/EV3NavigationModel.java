@@ -284,8 +284,7 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 								particles.dumpClosest(readings, dos, x, y);
 							}
 							break;
-						case PARTICLE_SET: // Particle set sent from PC
-							if (map == null) map = new LineMap();
+						case PARTICLE_SET: // Particle set send from PC
 							if (particles == null) particles = new MCLParticleSet(map,0,0);
 						    particles.loadObject(dis);
 						    mcl.setParticles(particles);
@@ -293,7 +292,6 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 						case TAKE_READINGS: // Request to take range readings and send them to the PC
 							if (scanner != null) {
 								readings = scanner.getRangeValues();
-								readings.printReadings();
 								dos.writeByte(NavEvent.RANGE_READINGS.ordinal());
 								readings.dumpObject(dos);
 							}
@@ -305,12 +303,8 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 							break;
 						case GET_PARTICLES: // Request to send particles to the PC
 							if (particles == null) break;
-							if (debug) log("Sending particle set");
-							synchronized (particles) {
-								dos.writeByte(NavEvent.PARTICLE_SET.ordinal());
-								particles.dumpObject(dos);
-							}
-							if (debug) log("Sent particle set");
+							dos.writeByte(NavEvent.PARTICLE_SET.ordinal());
+							particles.dumpObject(dos);
 							break;
 						case GET_ESTIMATED_POSE: // Request to send estimated pose to the PC
 							if (mcl == null) break;
@@ -393,12 +387,12 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 							break;
 						case TRAVEL_SPEED:
 							float travelSpeed = dis.readFloat();
-							if (pilot != null) pilot.setLinearSpeed(travelSpeed);
+							if (pilot != null) pilot.setTravelSpeed(travelSpeed);
 							break;
 						case ROTATE_SPEED:
 							float rotateSpeed = dis.readFloat();
 							if (pilot != null && pilot instanceof RotateMoveController) {
-								((RotateMoveController)pilot).setAngularSpeed(rotateSpeed);
+								((RotateMoveController)pilot).setRotateSpeed(rotateSpeed);
 							}
 							break;
 						case RANDOM_MOVE_PARAMS:
@@ -434,7 +428,6 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 			        || distance + clearance < forwardRange)
 			      pilot.travel(distance,false);
 			    
-			    if (debug) log("Random moved started");
 			    ((RotateMoveController) pilot).rotate(angle,false);
 			    if (debug) log("Random moved done");
 			}			
@@ -518,7 +511,6 @@ public class EV3NavigationModel extends NavigationModel implements MoveListener,
 					dos.writeByte(NavEvent.SET_POSE.ordinal());
 					pp.getPose().dumpObject(dos);
 				}
-				if (debug) log("Move stopped sent");
 			}
 		} catch (IOException ioe) {
 			fatal("IOException in moveStopped");	

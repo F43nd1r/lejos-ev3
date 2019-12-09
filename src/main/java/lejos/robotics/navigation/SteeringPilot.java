@@ -258,14 +258,14 @@ public class SteeringPilot implements ArcMoveController, RegulatedMotorListener 
 		travel(Double.POSITIVE_INFINITY, true);
 	}
 
-	public double getMaxLinearSpeed() {
+	public double getMaxTravelSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	// TODO: This method should indicate it is not live speed. Such as getSpeedSetting(), setSpeedSetting()
 	// TODO: Many methods in MoveController have no documentation and unit specification, incl. this.
-	public double getLinearSpeed() {
+	public double getTravelSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -279,7 +279,7 @@ public class SteeringPilot implements ArcMoveController, RegulatedMotorListener 
 		return isMoving;
 	}
 
-	public void setLinearSpeed(double speed) {
+	public void setTravelSpeed(double speed) {
 		// TODO This should set the motor speed for the drive motor, perhaps also calculates based on wheel diameter?
 		
 	}
@@ -343,16 +343,4 @@ public class SteeringPilot implements ArcMoveController, RegulatedMotorListener 
 		}
 		
 	}
-
-  @Override
-  public void setLinearAcceleration(double acceleration) {
-    // TODO: Added for interface, not in effect
-    
-  }
-
-  @Override
-  public double getLinearAcceleration() {
-    // TODO: Added for interface, not in effect
-    return 0;
-  }
 }

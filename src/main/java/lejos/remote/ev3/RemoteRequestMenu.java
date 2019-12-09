@@ -304,16 +304,4 @@ public class RemoteRequestMenu implements Menu, Serializable {
 			e.printStackTrace();
 		}	
 	}
-	
-    public void disConnect() {
-        try {
-            os.flush();
-            is.close();
-            os.close();
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

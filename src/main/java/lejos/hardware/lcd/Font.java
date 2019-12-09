@@ -27,7 +27,6 @@ public class Font implements Serializable
     public final static int SIZE_LARGE = 16;
     private static Font small;
     private static Font large;
-    private static Font medium;
 
     // The folowing classes contain the glyph bitmaps for the additonal fonts.
     // They are wrapped inside of classes to allow the linker to eliminate the
@@ -2207,7 +2206,7 @@ public class Font implements Serializable
      * @param height The cell height.
      * @param glyphWidth The width of the glyph bits.
      */
-    protected Font(byte[] glyphs, int width, int height, int base, int glyphWidth, int count, int first)
+    Font(byte[] glyphs, int width, int height, int base, int glyphWidth, int count, int first)
     {
         this.glyphs = glyphs;
         this.width = width;
@@ -2224,9 +2223,7 @@ public class Font implements Serializable
      */
     public static Font getDefaultFont()
     {
-        if (medium == null)
-            medium = new MediumFont();
-        return medium;
+        return new MediumFont();
     }
 
     /**

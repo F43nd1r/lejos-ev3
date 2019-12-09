@@ -72,7 +72,7 @@ public class RemoteRequestAnalogPort extends RemoteRequestIOPort implements Anal
 		EV3Request req = new EV3Request();
 		req.request = EV3Request.Request.SET_PIN_MODE;
 		req.intValue = portNum;
-		return sendRequest(req, true).result;
+		return sendRequest(req, false).result;
 	}
  
 	@Override

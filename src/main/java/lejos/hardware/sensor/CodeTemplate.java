@@ -40,11 +40,11 @@ import lejos.robotics.SampleProvider;
  * 
  * <p>
  * 
- * See <a href=""> Sensor datasheet </a>
- * See <a href=""> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href=""> Sensor datasheet </a>
+ * @see <a href=""> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -98,9 +98,9 @@ public class CodeTemplate extends UARTSensor {
      * settings.
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
-     * See <a href=""> Sensor datasheet </a>
+     * @see <a href=""> Sensor datasheet </a>
      */
     public SampleProvider getSomeMode() {
         return getMode(0);

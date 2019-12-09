@@ -52,14 +52,14 @@ import lejos.robotics.LampController;
  * 
  * <p>
  * <b>Sensor configuration</b><br>
- * The flood light of the sensor can be put on or off using the setFloodlight methods.
+ * The flood light of the sensor can be put on or off using the {@link setFloodLight} methods.
  * 
  * <p>
  * 
- * See <a href="http://www.ev-3.net/en/archives/847"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://www.ev-3.net/en/archives/847"> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -221,7 +221,7 @@ public class EV3ColorSensor extends UARTSensor implements LampController, ColorI
      * <p>
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
     public SensorMode getColorIDMode()
@@ -261,7 +261,7 @@ public class EV3ColorSensor extends UARTSensor implements LampController, ColorI
      * <p>
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
     public SensorMode getRedMode()
@@ -281,7 +281,7 @@ public class EV3ColorSensor extends UARTSensor implements LampController, ColorI
      * <p>
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
     public SensorMode getAmbientMode()
@@ -305,7 +305,7 @@ public class EV3ColorSensor extends UARTSensor implements LampController, ColorI
      * <p>
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
     public SensorMode getRGBMode()

@@ -165,7 +165,7 @@ public class OffsetCorrectionFilter extends AbstractFilter {
   /**
    * Returns the mean sample value
    * 
-   * @return the mean sample value
+   * @return
    */
   public float[] getMean() {
     return mean.clone();
@@ -174,7 +174,7 @@ public class OffsetCorrectionFilter extends AbstractFilter {
   /**
    * Returns the standard deviation from the mean sample value
    * 
-   * @return the standard deviation from the mean sample value
+   * @return
    */
   public float[] getStandardDeviation() {
     float[] std = new float[sampleSize];

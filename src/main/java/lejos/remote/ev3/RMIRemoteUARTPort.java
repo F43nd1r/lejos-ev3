@@ -25,7 +25,7 @@ public class RMIRemoteUARTPort extends UnicastRemoteObject implements RMIUARTPor
 	@Override
 	public void getBytes(byte[] vals, int offset, int len)
 			throws RemoteException {
-		port.getBytes(vals, offset, len);
+		port.getBytes(vals, offset, len);	
 	}
 
 	@Override
@@ -87,12 +87,5 @@ public class RMIRemoteUARTPort extends UnicastRemoteObject implements RMIUARTPor
     public void setBitRate(int bitRate) throws RemoteException
     {
         port.setBitRate(bitRate);
-    }
-
-    @Override
-    public int write(byte[] buffer, int offset, int len)
-    {
-        return port.write(buffer, offset, len);
-
     }
 }

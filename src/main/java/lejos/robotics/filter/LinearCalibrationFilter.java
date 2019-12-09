@@ -1,8 +1,5 @@
 package lejos.robotics.filter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import lejos.robotics.SampleProvider;
 
 /**
@@ -252,23 +249,10 @@ public class LinearCalibrationFilter extends AbstractCalibrationFilter {
 
   public void open(String name) {
     reset();
-    try {
-      load(name);
-      offset = getPropertyArray("offset");
-      scale = getPropertyArray("scale");
-      calibrationType = (int) getProperty("calibrationType");
-    } catch (FileNotFoundException e) {
-      reset();
-      e.printStackTrace();
-    } catch (CalibrationFileException e) {
-      System.err.println(e);
-      reset();
-    }
-    catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-      reset();
-    }
+    load(name);
+    offset = getPropertyArray("offset");
+    scale = getPropertyArray("scale");
+    calibrationType = (int) getProperty("calibrationType");
   }
 
   private void reset() {

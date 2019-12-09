@@ -17,7 +17,6 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
     static final float HOLD_I = 0.02f;
     static final float HOLD_D = 8f;
     static final int OFFSET = 0;
-    private static final int MAX_SPEED = 170*360/60;
 
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
@@ -26,7 +25,7 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
     public NXTRegulatedMotor(TachoMotorPort port)
     {
         super(port, null, EV3SensorConstants.TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
+                HOLD_P, HOLD_I, HOLD_D, OFFSET);
     }
     
     /**
@@ -36,7 +35,7 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
     public NXTRegulatedMotor(Port port)
     {
         super(port, null, EV3SensorConstants.TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
+                HOLD_P, HOLD_I, HOLD_D, OFFSET);
     }
 
 

@@ -55,12 +55,12 @@ import lejos.utility.EndianTools;
  * 
  * <p>
  * 
- * See <a
+ * @see <a
  *      href="http://www.hitechnic.com/cgi-bin/commerce.cgi?preadd=action&key=NAA1030">
  *      Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -196,9 +196,7 @@ public class HiTechnicAngleSensor extends I2CSensor {
     @Override
     public void fetchSample(float[] sample, int offset) {
       getData(REG_SPEED, buf, 2);
-      // 1 rpm = 360°/60sec = 6°/sec
-      //FIXME shouldn't we multiply by 6 instead of dividing by 60?
-      sample[offset] = -EndianTools.decodeShortBE(buf, 0) / 60f;
+      sample[offset] = -EndianTools.decodeShortBE(buf, 0) / 60;
     }
 
     @Override

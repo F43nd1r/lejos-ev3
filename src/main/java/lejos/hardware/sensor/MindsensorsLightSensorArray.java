@@ -39,11 +39,11 @@ import lejos.hardware.port.Port;
  * 
  * <p>
  * 
- * See <a href="http://www.mindsensors.com/index.php?module=documents&JAS_DocumentManager_op=downloadFile&JAS_File_id=1260"> Sensor datasheet </a>
- * See <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=168"> Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://www.mindsensors.com/index.php?module=documents&JAS_DocumentManager_op=downloadFile&JAS_File_id=1260"> Sensor datasheet </a>
+ * @see <a href="http://www.mindsensors.com/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=168"> Sensor Product page </a>
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -57,10 +57,6 @@ public class MindsensorsLightSensorArray extends I2CSensor  {
 	private final static byte COMMAND = 0x41;
 	private final static byte DATA = 0x42;
 	private final static int FACTORY_DEFAULT = 0x14;
-	
-	//TODO in addition to the calibrates values, the driver should also provide
-	// access to the RAW values at 0x6A to 0x79 (2  byte per sensor) so that
-	// calibration can be performed with the leJOS filter framework.
 
     /**
      * Constructor
@@ -158,7 +154,7 @@ public class MindsensorsLightSensorArray extends I2CSensor  {
 		getData(DATA,buf,8);
 		
 		for(int i=0;i<8;i++) {
-			sample[offset+i] = buf[i]/100f;
+			sample[offset+i] = buf[i]/100;
 		}	
 	}
 

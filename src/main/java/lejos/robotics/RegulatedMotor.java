@@ -117,8 +117,7 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
   int getSpeed();
  
   /**
-   * Returns the maximum speed that can be maintained by the regulation system based upon the 
-   * current state of the battery.
+   * Returns the maximim speed of the motor.
    * 
    * @return the maximum speed of the Motor in degrees per second.
    */

@@ -80,7 +80,7 @@ public class RFIDSensor extends I2CSensor
      */
     public RFIDSensor(Port port)
     {
-        super(port, DEFAULT_ADDRESS, TYPE_LOWSPEED_9V);
+        super(port, DEFAULT_ADDRESS, TYPE_LOWSPEED);
         init();
     }
 

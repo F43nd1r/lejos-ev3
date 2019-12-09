@@ -54,14 +54,14 @@ import lejos.utility.EndianTools;
  * 
  * <p>
  * 
- * See <a
+ * @see <a
  *      href="http://www.minfinity.com/Manual/CruizCore_XG1300L_User_Manual.pdf">
  *      Sensor datasheet </a>
- * See <a href="http://www.minfinity.com/eng/page.php?Main=1&sub=1&tab=5">
+ * @see <a href="http://www.minfinity.com/eng/page.php?Main=1&sub=1&tab=5">
  *      Sensor Product page </a>
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -105,7 +105,7 @@ public class CruizcoreGyro extends I2CSensor {
 
     private static final byte SELECT_SCALE = 0x61;
 
-    private float             scale;
+    private float             scale        = 1;
 
     /**
      * Instantiates a new Cruizcore Gyro sensor.
@@ -132,17 +132,11 @@ public class CruizcoreGyro extends I2CSensor {
      * Sets the acc scale.
      * 
      * @param sf
-     *            the scale factor: 0 for +/- 2G, 1 for +/- 4G, 2 for +/- 8g
-     * @throws IllegalArgumentException
-     *            if the parameter is neither 0, 1, or 2.
+     *            the scale factor 0 for +/- 2G 1 for +/- 4G 2 for +/- 8g
      */
-    public void setAccScale(int sf) {
-    	if (sf < 0 || sf > 2)
-    		throw new IllegalArgumentException();
-    	// TODO we write one byte too many (the zero).
-    	// The driver should perform a zero length write to register SELECT_SCALE + sf.
+    public void setAccScale(byte sf) {
         sendData(SELECT_SCALE + sf, (byte) 0);
-        scale = 0.00981f * (1 << sf);
+        scale = (float) (9.81 / 1000f * Math.pow(2, sf + 1) / 2);
     }
 
     /**
@@ -190,9 +184,9 @@ public class CruizcoreGyro extends I2CSensor {
      * of the sensor class.
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
-     * See <a
+     * @see <a
      *      href="http://www.minfinity.com/Manual/CruizCore_XG1300L_User_Manual.pdf">
      *      Sensor datasheet </a>
      */
@@ -235,9 +229,9 @@ public class CruizcoreGyro extends I2CSensor {
      * There are no configurable parameters.
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
-     * See <a
+     * @see <a
      *      href="http://www.minfinity.com/Manual/CruizCore_XG1300L_User_Manual.pdf">
      *      Sensor datasheet </a>
      */
@@ -277,9 +271,9 @@ public class CruizcoreGyro extends I2CSensor {
      * the sensor class.
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
-     * See <a
+     * @see <a
      *      href="http://www.minfinity.com/Manual/CruizCore_XG1300L_User_Manual.pdf">
      *      Sensor datasheet </a>
      */

@@ -59,9 +59,9 @@ import lejos.hardware.port.Port;
  * <p>
  * 
  * 
- * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
+ * @see <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
  *      <p>
@@ -124,7 +124,7 @@ import lejos.hardware.port.Port;
      * <p>
      * 
      * @return A sampleProvider
-     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     * @see {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
 public SensorMode getAmbientMode() {
@@ -144,7 +144,7 @@ public SensorMode getAmbientMode() {
  * <p>
  * 
  * @return A sampleProvider
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
+ * @see {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  */    public SensorMode getLaserMode() {
         return getMode(1);
